@@ -2,6 +2,7 @@ import { AccountRepository } from "../domain/repositories/Repositories";
 import { InvalidAmountError, AccountNotFoundError, AccountFrozenError, InsufficientBalanceError } from "../domain/exceptions/FinancialError";
 import { WithdrawalInputDTO, WithdrawalOutputDTO } from "./dto/WithdrawalDTOs";
 import { Decimal } from "decimal.js";
+import { Withdrawal } from "../domain/entities/Transaction";
 
 export class WithdrawalUseCase {
   constructor(private readonly accountRepository: AccountRepository) {}
@@ -30,11 +31,22 @@ export class WithdrawalUseCase {
 
     account.withdraw(withdrawalAmount);
 
-    const updatedAccount = await this.accountRepository.save(account);
+    //const updatedAccount = await this.accountRepository.save(account);
+    
+    const transactionEntity = Withdrawal.create({
+      amount: withdrawalAmount,
+      status: "PENDING",
+      sourceAccountId: account.id!,
+      createdAt: new Date(),
+      description: `Retiro de ${withdrawalAmount.toNumber()} desde la cuenta ${account.id!}.`
+    });
+
+    
+    const savedTransaction = await this.accountRepository.executeTransaction(transactionEntity);
 
     return {
-      accountId: updatedAccount.id!,
-      newBalance: updatedAccount.balance.toNumber(),
+      accountId: account.id!,
+      newBalance: account.balance.toNumber(),
       withdrawnAt: new Date(),
     };
   }

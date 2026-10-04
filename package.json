@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prestart": "prisma generate",
     "start": "tsx watch src/server.ts",
     "build": "tsc --project tsconfig.json --outDir dist --rootDir ./src",
     "test": "vitest run",

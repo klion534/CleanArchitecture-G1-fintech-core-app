@@ -2,13 +2,14 @@ services:
   postgres:
     image: postgres:18
     environment:
-      POSTGRES_USER: "${DB_USER:-postgres}"
-      POSTGRES_PASSWORD: "${DB_PASSWORD}"
-      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: fintech_core
     ports:
-      - "${DB_PORT:-5432}:5432"
+      - "5433:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/18/docker
-  
+      - postgres_data:/var/lib/postgresql
+
 volumes:
   postgres_data:
+
