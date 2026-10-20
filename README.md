@@ -1,8 +1,10 @@
 # Fintech Core — proyecto académico
 
-Aplicación full stack desarrollada como proyecto de aprendizaje sobre arquitectura de software y despliegue con contenedores. Este repositorio es un fork de [cesar-devsenior/CleanArchitecture-G1-fintech-core-app](https://github.com/cesar-devsenior/CleanArchitecture-G1-fintech-core-app); conserva la atribución del proyecto original y los cambios de este fork están disponibles en el historial de commits.
+Aplicación full stack trabajada y desarrollada individualmente como proyecto académico. La construí en mi computadora siguiendo las lecciones del curso y dediqué tiempo adicional, después de clase, a comprender cómo funciona, estudiar su arquitectura e investigar las tecnologías utilizadas.
 
-> **Estado:** proyecto académico/de demostración. La configuración permite levantar los componentes localmente con Docker Compose, pero eso no significa que la aplicación esté auditada o lista para operar en producción.
+Este repositorio parte de [CleanArchitecture-G1-fintech-core-app](https://github.com/cesar-devsenior/CleanArchitecture-G1-fintech-core-app), material base del curso. La relación de fork y la atribución al proyecto original se conservan para dejar claro el origen del código y el contexto de aprendizaje.
+
+> **Estado:** proyecto académico de demostración para ejecución local. No se presenta como un sistema bancario auditado ni listo para producción.
 
 ## Tecnologías
 
@@ -86,6 +88,6 @@ pnpm test --run
 pnpm build
 ```
 
-## Alcance y contribuciones
+## Alcance
 
-Este trabajo se desarrolló en contexto académico. Revise el historial de commits de este fork para distinguir los cambios realizados aquí del código heredado del repositorio original. Antes de usar cualquier configuración fuera de un entorno local, deben revisarse seguridad, secretos, migraciones, permisos, monitoreo y pruebas.
+El objetivo del proyecto fue aprender y comprender el funcionamiento de una aplicación full stack, su arquitectura y el uso de Docker Compose para ejecutarla localmente. Antes de usar cualquier configuración fuera de un entorno local, se deben revisar seguridad, secretos, migraciones, permisos, monitoreo y pruebas.
