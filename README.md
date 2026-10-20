@@ -1,52 +1,72 @@
-# Clean Architecture Fintech Core
+# Fintech Core — proyecto académico
 
-Sistema full stack con Clean Architecture, PostgreSQL, Docker Compose y despliegue preparado para producción.
+Aplicación full stack desarrollada como proyecto de aprendizaje sobre arquitectura de software y despliegue con contenedores. Este repositorio es un fork de [cesar-devsenior/CleanArchitecture-G1-fintech-core-app](https://github.com/cesar-devsenior/CleanArchitecture-G1-fintech-core-app); conserva la atribución del proyecto original y los cambios de este fork están disponibles en el historial de commits.
+
+> **Estado:** proyecto académico/de demostración. La configuración permite levantar los componentes localmente con Docker Compose, pero eso no significa que la aplicación esté auditada o lista para operar en producción.
+
+## Tecnologías
+
+- **Backend:** Node.js, Express, TypeScript y Prisma.
+- **Frontend:** React y Vite, servido por Nginx.
+- **Base de datos:** PostgreSQL.
+- **Contenedores:** Docker y Docker Compose.
 
 ## Estructura
 
-- `backend/`: API REST con Node.js, Express, TypeScript y Prisma.
-- `frontend/`: aplicación React/Vite servida por Nginx.
-- `docker-compose.yml`: PostgreSQL 18, backend y frontend.
+- `backend/`: API REST.
+- `frontend/`: aplicación web.
+- `docker-compose.yml`: servicios locales de PostgreSQL, backend y frontend.
 
-## Ejecución local con Docker
+## Requisitos
 
-Requisitos: Docker y Docker Compose.
+- Docker y Docker Compose.
+- Git para clonar el repositorio.
 
-```bash
-cp .env.example .env
-# Ajusta los secretos de .env para tu entorno
-docker compose config
-docker compose up -d --build
-docker compose ps
-```
+## Ejecución local
 
-URLs locales:
+1. Clone este repositorio y entre a su carpeta.
+2. Copie el archivo de ejemplo de variables:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+3. Revise y configure los valores de `.env` para su equipo. No publique secretos reales.
+4. Valide la configuración y levante los servicios:
+
+   ```bash
+   docker compose config
+   docker compose up -d --build
+   docker compose ps
+   ```
+
+URLs locales configuradas:
 
 - Frontend: http://localhost:8081
 - Backend: http://localhost:3001
 - Health check: http://localhost:3001/health
 - PostgreSQL: localhost:5434
 
-Logs:
+Para revisar registros:
 
 ```bash
 docker compose logs -f backend
 docker compose logs -f postgres-db
 ```
 
-Para detener los servicios sin borrar los datos:
+Para detener los servicios:
 
 ```bash
 docker compose down
 ```
 
-Para borrar también el volumen local de PostgreSQL:
+Para borrar también los datos del volumen local de PostgreSQL:
 
 ```bash
 docker compose down -v
 ```
 
-## Validación sin Docker
+## Pruebas y compilación
 
 Backend:
 
@@ -66,23 +86,6 @@ pnpm test --run
 pnpm build
 ```
 
-## Despliegue
+## Alcance y contribuciones
 
-El backend ejecuta `prisma migrate deploy` al iniciar el contenedor. La base de datos de producción debe estar disponible antes de iniciar el backend y los secretos deben configurarse en el proveedor de despliegue, nunca en el repositorio.
-
-Antes de publicar:
-
-1. Configurar `DATABASE_URL` y `JWT_SECRET` en producción.
-2. Construir y probar las imágenes.
-3. Verificar `/health`.
-4. Confirmar que el frontend usa la URL pública del backend.
-5. Revisar logs, permisos y migraciones.
-
-## Estado del entregable
-
-- Clean Architecture en backend y frontend.
-- Pruebas automatizadas.
-- Dockerfiles multi-etapa.
-- PostgreSQL con volumen persistente.
-- Healthchecks en Compose.
-- Nginx configurado para React Router.
+Este trabajo se desarrolló en contexto académico. Revise el historial de commits de este fork para distinguir los cambios realizados aquí del código heredado del repositorio original. Antes de usar cualquier configuración fuera de un entorno local, deben revisarse seguridad, secretos, migraciones, permisos, monitoreo y pruebas.
